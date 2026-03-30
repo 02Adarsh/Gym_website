@@ -1,0 +1,142 @@
+{% extends "base.html" %}
+
+{% block title %}
+Attendance
+{% endblock title %}
+
+{% block hero %}
+
+<div style="
+display:flex; 
+justify-content:center; 
+align-items:center; 
+min-height:80vh; 
+gap:80px; 
+flex-wrap:wrap;
+padding:20px;
+">
+
+<!-- 🔥 QR SECTION -->
+<div style="
+z-index: 2;
+width:260px;
+padding:20px;
+background:rgba(0,0,0,0.65);
+border-radius:12px;
+text-align:center;
+color:white;
+backdrop-filter:blur(8px);
+box-shadow:0 10px 30px rgba(0,0,0,0.6), 0 0 15px rgba(255,255,255,0.1);
+">
+
+<h5 style="color:#ffc107; margin-bottom:10px;">Quick Attendance</h5>
+
+<h4 style="margin-bottom:15px;">Scan QR</h4>
+
+<img src="/generate-qr/" alt="QR Code" style="
+width:200px; 
+height:200px; 
+border-radius:8px;
+background:white;
+padding:10px;
+">
+
+<br><br>
+
+<button onclick="location.reload()" class="btn btn-success btn-sm">
+Refresh QR
+</button>
+
+<p style="margin-top:15%; font-size:13px;">
+Scan this QR to mark attendance
+</p>
+
+</div>
+<div style="display:flex; justify-content:center; align-items:center; min-height:80vh;">
+
+<form method="POST" action="/attendance" style="
+width:420px;
+padding:30px;
+background:rgba(0,0,0,0.65);
+border-radius:12px;
+backdrop-filter:blur(8px);
+box-shadow:0 10px 30px rgba(0,0,0,0.6);
+z-index: 2;
+">
+
+{% csrf_token %}
+
+<h3 style="text-align:center; color:white; margin-bottom:25px;">Apply Attendance</h3>
+{% if messages %}
+    {% for message in messages %}
+        <div style="
+            padding:10px;
+            margin-bottom:15px;
+            background:lightgreen;
+            color:black;
+            border-radius:6px;
+            text-align:center;
+        ">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endif %}
+
+<div class="mb-3">
+<label style="color:white;">Phone Number</label>
+<input type="number" name="PhoneNumber" value="{{user_data.Phonenumber}}" class="form-control" placeholder="Enter Your Number" required>
+</div>
+
+<div class="mb-3">
+    <label style="color:white;">Workout</label>
+    <select name="SelectWorkout" class="form-control" required>
+        <option value="">Select Workout</option>
+        <option value="Biceps">Biceps</option>
+        <option value="Triceps">Triceps</option>
+        <option value="Shoulders">Shoulders</option>
+        <option value="Chest">Chest</option>
+        <option value="ABS">ABS</option>
+        <option value="Back">Back</option>
+        <option value="Warm Up">Warm Up</option>
+        <option value="Treadmill">Treadmill</option>
+    </select>
+</div>
+
+<div class="mb-3">
+<label style="color:white;">Login Time</label>
+<input type="time" name="Logintime" class="form-control" placeholder="Login Time" required>
+</div>
+
+<div class="mb-3">
+<label style="color:white;">Logout Time</label>
+<input type="time" name="Logout" class="form-control" placeholder="Logout Time" required>
+</div>
+
+<div class="mb-3">
+    <label style="color:white;">Trainer</label>
+    <select name="SelectTrainer" class="form-control" required>
+        <option value="">Select Trainer</option>
+
+        {% for p in SelectTrainer %}
+            <option value="{{p.name}}">{{p.name}}</option>
+        {% endfor %}
+
+    </select>
+</div>
+
+
+
+<button type="submit" class="btn btn-warning w-100" style="font-weight:600;">
+Apply Attendance
+</button>
+
+
+
+</form>
+
+</div>
+
+{% endblock hero %}
+
+{% block body %}
+{% endblock body %}

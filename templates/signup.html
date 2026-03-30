@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block title %}
+signup
+{% endblock title %}
+
+{% block hero %}
+
+<div style="display:flex; justify-content:center; align-items:center; min-height:80vh; flex-direction:column;">
+
+<!-- Django Messages -->
+<form method="POST" action="/signup" style="
+width:420px;
+padding:30px;
+background:rgba(0,0,0,0.65);
+border-radius:12px;
+backdrop-filter:blur(8px);
+box-shadow:0 10px 30px rgba(0,0,0,0.6);
+z-index:2;
+">
+
+{% csrf_token %}
+
+<h2 style="text-align:center; color:white; margin-bottom:25px;">Create Account</h2>
+{% if messages %}
+    {% for message in messages %}
+        <div style="
+            padding:10px;
+            margin-bottom:15px;
+            background:lightgreen;
+            color:black;
+            border-radius:6px;
+            text-align:center;
+        ">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endif %}
+
+<div class="mb-3">
+<label style="color:white;">UserName</label>
+<input type="text" name="username" class="form-control" placeholder="Enter your name" required>
+</div>
+
+<div class="mb-3">
+<label style="color:white;">Email address</label>
+<input type="email" name="email" class="form-control" placeholder="Enter email" required>
+</div>
+
+<div class="mb-3">
+<label style="color:white;">Password</label>
+<input type="password" name="pass1" class="form-control" placeholder="Enter password" required>
+</div>
+
+<div class="mb-3">
+<label style="color:white;">Confirm Password</label>
+<input type="password" name="pass2" class="form-control" placeholder="Confirm password" required>
+</div>
+
+<div class="mb-3 form-check">
+<input type="checkbox" class="form-check-input" required>
+<label class="form-check-label" style="color:white;">I agree to the terms</label>
+</div>
+
+<button type="submit" class="btn btn-warning w-100" style="font-weight:600;">
+Sign Up
+</button>
+
+<p style="text-align:center; color:lightgray; margin-top:15px;">
+Already have an account? 
+<a href="/handlelogin" style="color:#ffc107;">Login</a>
+</p>
+
+</form>
+
+</div>
+
+{% endblock hero %}
+
+{% block body %}
+{% endblock body %}

@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block title %}
+Contact
+{% endblock title %}
+
+{% block hero %}
+<div style="display:flex; justify-content:center; align-items:center; min-height:80vh;">
+
+<form method="POST" action="/contact" style="
+width:420px;
+padding:30px;
+background:rgba(0,0,0,0.65);
+border-radius:12px;
+backdrop-filter:blur(8px);
+box-shadow:0 10px 30px rgba(0,0,0,0.6);
+z-index: 2;
+">
+
+{% csrf_token %}
+
+<h2 style="text-align:center; color:white; margin-bottom:25px;">Contact Us</h2>
+{% if messages %}
+    {% for message in messages %}
+        <div style="
+            padding:10px;
+            margin-bottom:15px;
+            background:lightgreen;
+            color:black;
+            border-radius:6px;
+            text-align:center;
+        ">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endif %}
+
+<div class="mb-3">
+<label style="color:white;">Username</label>
+<input type="text" name="username" class="form-control" placeholder="Enter Your Name" required>
+</div>
+
+<div class="mb-3">
+<label style="color:white;">Email</label>
+<input type="email" name="email" class="form-control" placeholder="Enter Your Email" required>
+</div>
+
+<div class="mb-3">
+<label style="color:white;">Phone Number</label>
+<input type="number" name="number" class="form-control" placeholder="Enter Your Number" required>
+</div>
+
+<div class="mb-3">
+<label style="color:white;">How can i help you?</label>
+<textarea type="text" name="desc" class="form-control" placeholder="Description" required></textarea>
+</div>
+
+<button type="submit" class="btn btn-warning w-100" style="font-weight:600;">
+Submit
+</button>
+
+
+
+</form>
+
+</div>
+{% endblock hero %}
+
+{% block body %}
+{% endblock body %}
