@@ -1,1 +1,1 @@
-web: gunicorn azwafitness.wsgi
+web: gunicorn azwafitness.wsgi:application --bind 0.0.0.0:$PORT
