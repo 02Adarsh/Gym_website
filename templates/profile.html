@@ -6,22 +6,98 @@ Profile
 
 {% block hero %}
 
-<div style="position:relative; min-height:100vh;">
+<style>
 
-<div style="
-position:absolute;
-right:240px;  
-top:55%;
-transform:translateY(-50%);
-width:420px;
-padding:35px;
-background:rgba(0, 0, 0, 0.7);
-border-radius:16px;
-backdrop-filter: blur(15px);
-box-shadow: 0 15px 40px rgba(0,0,0,0.7);
-color:white;
-z-index:2;
-">
+/* Main Layout */
+.main-container{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:40px;
+    padding:120px 40px 40px 40px;
+    flex-wrap:wrap;
+    min-height:100vh;
+}
+
+/* Profile Card */
+.profile-box{
+    width:420px;
+    padding:35px;
+    background:rgba(0, 0, 0, 0.7);
+    border-radius:16px;
+    backdrop-filter: blur(15px);
+    box-shadow:0 15px 40px rgba(0,0,0,0.7);
+    color:white;
+    z-index:2;
+}
+
+/* Attendance */
+.attendance-box{
+    flex:1;
+    min-width:350px;
+    overflow-x:auto;
+    z-index:2;
+}
+
+/* Profile List */
+.profile-li{
+    padding:12px;
+    margin-bottom:10px;
+    background:rgba(255,255,255,0.08);
+    border-radius:8px;
+    color:white;
+    border-left:3px solid #ffc107;
+    transition:0.2s;
+}
+
+.profile-li:hover{
+    transform:scale(1.02);
+    background:rgba(255,255,255,0.12);
+}
+
+/* Mobile Responsive */
+@media(max-width:992px){
+
+.main-container{
+    flex-direction:column;
+    padding:100px 15px 20px 15px;
+}
+
+.profile-box{
+    width:100%;
+}
+
+.attendance-box{
+    width:100%;
+}
+
+}
+
+/* Small Screen */
+@media(max-width:576px){
+
+.profile-box{
+    padding:20px;
+}
+
+table{
+    min-width:600px;
+    font-size:13px;
+}
+
+h3{
+    font-size:24px;
+}
+
+}
+
+</style>
+
+
+<div class="main-container">
+
+<!-- Profile Section -->
+<div class="profile-box">
 
 <h3 style="
 text-align:center;
@@ -52,51 +128,55 @@ Welcome {{ user.username }}
 
 <ul style="list-style:none; padding:0; margin:0;">
 
-  <li style="padding:12px; margin-bottom:10px; background:rgba(255,255,255,0.08); border-radius:8px; color:white; border-left:3px solid #ffc107;">
+  <li class="profile-li">
     Name: {{ p.FullName }}
   </li>
 
-  <li style="padding:12px; margin-bottom:10px; background:rgba(255,255,255,0.08); border-radius:8px; color:white; border-left:3px solid #ffc107;">
+  <li class="profile-li">
     Email: {{ p.Email }}
   </li>
 
-  <li style="padding:12px; margin-bottom:10px; background:rgba(255,255,255,0.08); border-radius:8px; color:white; border-left:3px solid #ffc107;">
+  <li class="profile-li">
     Phone Number: {{ p.PhoneNumber }}
   </li>
 
-  <li style="padding:12px; margin-bottom:10px; background:rgba(255,255,255,0.08); border-radius:8px; color:white; border-left:3px solid #ffc107;">
+  <li class="profile-li">
     Gender: {{ p.Gender }}
   </li>
 
-  <li style="padding:12px; margin-bottom:10px; background:rgba(255,255,255,0.08); border-radius:8px; color:white; border-left:3px solid #ffc107;">
+  <li class="profile-li">
     DOB: {{ p.Dob }}
   </li>
 
-  <li style="padding:12px; margin-bottom:10px; background:rgba(255,255,255,0.08); border-radius:8px; color:white; border-left:3px solid #ffc107;">
+  <li class="profile-li">
     Membership Plan: {{ p.SelectMembershipplan }}
   </li>
 
-  <li style="padding:12px; margin-bottom:10px; background:rgba(255,255,255,0.08); border-radius:8px; color:white; border-left:3px solid #ffc107;">
+  <li class="profile-li">
     Trainer: {{ p.SelectTrainer }}
   </li>
 
-  <li style="padding:12px; margin-bottom:10px; background:rgba(255,255,255,0.08); border-radius:8px; color:white; border-left:3px solid #ffc107;">
+  <li class="profile-li">
     Address: {{ p.Address }}
   </li>
-  <li style="padding:12px; margin-bottom:10px; background:rgba(255,255,255,0.08); border-radius:8px; color:white; border-left:3px solid #ffc107;">
+
+  <li class="profile-li">
     Reference: {{ p.Reference }}
   </li>
-  <li style="padding:12px; margin-bottom:10px; background:rgba(255,255,255,0.08); border-radius:8px; color:white; border-left:3px solid #ffc107;">
+
+  <li class="profile-li">
     Payment Status: {{ p.paymentstatus }}
   </li>
-  <li style="padding:12px; margin-bottom:10px; background:rgba(255,255,255,0.08); border-radius:8px; color:white; border-left:3px solid #ffc107;">
+
+  <li class="profile-li">
     Amount Paid: {{ p.Price }}
   </li>
-  <li style="padding:12px; margin-bottom:10px; background:rgba(255,255,255,0.08); border-radius:8px; color:white; border-left:3px solid #ffc107;">
+
+  <li class="profile-li">
     Upcoming Due date: {{ p.DueDate }}
   </li>
-  </li>
-  <li style="padding:12px; margin-bottom:10px; background:rgba(255,255,255,0.08); border-radius:8px; color:white; border-left:3px solid #ffc107;">
+
+  <li class="profile-li">
     Joining Date: {{ p.timeStamp }}
   </li>
 
@@ -105,70 +185,66 @@ Welcome {{ user.username }}
 <br>
 
 {% empty %}
-<p style="color:white; text-align:center;">No Enrollment Found</p>
+<p style="color:white; text-align:center;">
+    No Enrollment Found
+</p>
 {% endfor %}
+
+</div>
+
+
+<!-- Attendance Section -->
+<div class="attendance-box">
+
+<h3 style="color:white; margin-bottom:20px; text-align:center">
+Attendance Records
+</h3>
+
+<div style="overflow-x:auto;">
+
+<table class="table table-dark table-striped table-hover" style="min-width:500px;">
+
+<thead>
+<tr>
+    <th>Date</th>
+    <th>Login</th>
+    <th>Logout</th>
+    <th>Workout</th>
+    <th>Trained By</th>
+</tr>
+</thead>
+
+<tbody>
+
+{% for attend in attendance %}
+
+<tr>
+    <td>{{ attend.Selectdate }}</td>
+    <td>{{ attend.Login }}</td>
+    <td>{{ attend.Logout }}</td>
+    <td>{{ attend.SelectWorkout }}</td>
+    <td>{{ attend.TrainedBy }}</td>
+</tr>
+
+{% empty %}
+
+<tr>
+    <td colspan="5" style="text-align:center;">
+        No attendance found
+    </td>
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
 </div>
 
 </div>
-<!-- Attendance Table Right Side -->
-<div style="
-    position:absolute;
-    flex:1;
-    z-index: 2;
-    min-width:300px;
-    max-width:800px;
-    overflow-x:auto;
-    top:10%;
-    right:10px;
-    width:50%
-    
-">
-  <h3 style="color:white; margin-bottom:20px; text-align:center">Attendance Records</h3>
-  <table class="table table-dark table-striped table-hover" style="min-width:500px;">
-    <thead>
-      <tr>
-        
-        <th>Date</th>
-        <th>Login</th>
-        <th>Logout</th>
-        <th>Workout</th>
-        <th>Trained By</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for attend in attendance %}
-      <tr>
-        <td>{{ attend.Selectdate }}</td>
-        <td>{{ attend.Login }}</td>
-        <td>{{ attend.Logout }}</td>
-        <td>{{ attend.SelectWorkout}}</td>
-        <td>{{ attend.TrainedBy }}</td>
-      </tr>
-      {% empty %}
-      <tr>
-        <td colspan="7" style="text-align:center;">No attendance found</td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+
 </div>
-
-<style>
-  /* Scroll horizontally on small screens */
-  @media (max-width:900px){
-    div[style*="overflow-x:auto"]{
-      width:90%;
-      margin-left:0;
-    }
-  }
-</style>
-<style>
-li:hover {
-  transform: scale(1.02);
-  background: rgba(255,255,255,0.12);
-  transition: 0.2s;
-
-</style>
 
 {% endblock hero %}
 
