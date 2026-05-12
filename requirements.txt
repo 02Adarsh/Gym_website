@@ -2,3 +2,5 @@ Django
 gunicorn
 whitenoise
 python-dotenv
+qrcode
+pillow
