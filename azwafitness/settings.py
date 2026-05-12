@@ -25,8 +25,10 @@ SECRET_KEY = 'django-insecure-m2(&iu(fddsfk_5u!y&um+!vihpk#@(*@*(er*+(_pkc!7cq8^
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'azwafitness.up.railway.app']
 
+
+CSRF_TRUSTED_ORIGINS =['https://azwafitness.up.railway.app']
 
 # Application definition
 
